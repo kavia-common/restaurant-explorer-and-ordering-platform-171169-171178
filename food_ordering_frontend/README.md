@@ -1,36 +1,70 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Ocean Eats – Food Ordering Frontend
+
+Modern, ocean-inspired food ordering interface built with Next.js (App Router) and Tailwind CSS utilities. Users can browse restaurants, filter by cuisine, rating and price, view menus, manage a cart, and place orders. REST calls are abstracted behind a simple service with dummy data for now.
+
+## Tech Stack
+- Next.js 15 (App Router)
+- TypeScript
+- Tailwind CSS v4 (via `@tailwindcss/postcss`)
+- Minimal state via React Context (Cart + UI)
+
+## Ocean Professional Style
+- Primary: `#2563EB` (Blue-600)
+- Secondary: `#F59E0B` (Amber-500)
+- Error: `#EF4444`
+- Background: `#f9fafb`
+- Surface: `#ffffff`
+- Typography: modern, clean, minimalist with subtle shadows and rounded corners
+
+## Features
+- Header with navigation
+- Sidebar filters: search, cuisines, rating, price
+- Restaurant list with cards
+- Restaurant details with menu sections
+- Add to cart, inline quantity controls, remove/clear
+- Persistent cart summary bar
+- Dummy REST API integration with fallback data
+- Responsive layout
 
 ## Getting Started
-
-First, run the development server:
+Install dependencies and run dev server:
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open http://localhost:3000
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Configuration
+Environment variables:
+- NEXT_PUBLIC_API_BASE: Optional base URL for backend REST API. If not set, the app will use local dummy data. Add to `.env.local`:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+NEXT_PUBLIC_API_BASE=https://your-backend.example.com
+```
 
-## Learn More
+Do not commit actual secrets. Provide only necessary public endpoints.
 
-To learn more about Next.js, take a look at the following resources:
+## Project Structure
+- src/app: App Router pages and layout
+- src/components: UI components (cards, sidebar, details, cart bar)
+- src/context: Cart and UI context providers
+- src/services: REST API abstraction with dummy fallback
+- src/types: Shared TypeScript types
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## API Integration Notes
+- `src/services/api.ts` defines `api.getRestaurants`, `api.getRestaurant`, and `api.placeOrder`.
+- Replace dummy endpoints with real backend URLs and shape once the backend is available.
+- Ensure CORS and authentication (if needed) are configured on the backend.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Accessibility
+- Buttons and inputs have accessible labels where applicable
+- Color choices respect contrast with light surfaces
 
-## Deploy on Vercel
+## Deployment
+- `next.config.ts` is configured for static export (`output: "export"`).
+- Use `npm run build` and then deploy the `out/` directory to a static host or use Vercel.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## License
+MIT
